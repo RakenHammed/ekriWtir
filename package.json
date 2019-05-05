@@ -36,6 +36,7 @@
     "jw-bootstrap-switch-ng2": "2.0.5",
     "ng-connection-service": "^1.0.4",
     "ng2-nouislider": "1.7.13",
+    "ngx-bootstrap": "^4.1.1",
     "ngx-spinner": "^7.1.4",
     "ngx-toastr": "^10.0.2",
     "nouislider": "9.2.0",

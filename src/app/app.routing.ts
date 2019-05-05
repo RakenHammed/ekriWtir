@@ -8,6 +8,8 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
+import { CreateAccountComponent } from './pages/create-account/create-account.component';
+
 
 const routes: Routes =[
     { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -15,6 +17,7 @@ const routes: Routes =[
     { path: 'nucleoicons',          component: NucleoiconsComponent },
     { path: 'landing',     component: LandingComponent },
     { path: 'login',       component: LoginComponent },
+    { path: 'create-account',       component: CreateAccountComponent },
     { path: 'profile',     component: ProfileComponent }
 ];
 

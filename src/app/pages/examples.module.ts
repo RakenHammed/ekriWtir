@@ -10,6 +10,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { RouterModule } from '@angular/router';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
     imports: [
@@ -22,11 +25,14 @@ import { ProfileComponent } from './profile/profile.component';
             apiKey: 'YOUR_KEY_HERE'
         }),
         NgxSpinnerModule,
+        RouterModule,
+        BsDatepickerModule.forRoot(),
     ],
     declarations: [
         LandingComponent,
         LoginComponent,
-        ProfileComponent
+        ProfileComponent,
+        CreateAccountComponent
     ]
 })
 export class PagesModule { }
