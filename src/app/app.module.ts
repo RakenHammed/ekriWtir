@@ -12,7 +12,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { ConnectionService } from 'ng-connection-service';
 
 @NgModule({
     declarations: [
