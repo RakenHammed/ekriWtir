@@ -71,8 +71,9 @@ export class LoginComponent implements OnInit {
             this.toastr.error(error.error.message, 'Warning', {
               timeOut: 2000,
             });
-          })
+          });
     }
+    this.spinner.hide('loginSpinner');
   }
 
   checkEmail(email: string): boolean {
