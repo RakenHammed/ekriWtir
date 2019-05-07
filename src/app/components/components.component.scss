@@ -1,5 +1,10 @@
 .round-circle {
     border-radius: 50% !important;
+    background-color: #b20e0e;
+}
+
+.round-circle:hover {
+    background-color: #c22b2b;
 }
 
 ngb-progressbar {
