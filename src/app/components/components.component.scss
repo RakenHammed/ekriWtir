@@ -10,3 +10,7 @@
 ngb-progressbar {
     margin-top: 5rem;
 }
+
+:host ::ng-deep .page-header {
+    height: 100vh;
+}
