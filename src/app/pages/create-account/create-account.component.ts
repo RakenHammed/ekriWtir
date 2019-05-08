@@ -1,8 +1,6 @@
 import { UserProviderService } from './../../providers/user-provider.service';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http'
-import { UrlProviderService } from '../../providers/url-provider.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -15,13 +13,10 @@ import { User } from 'app/models/user';
   styleUrls: ['./create-account.component.scss'],
 })
 export class CreateAccountComponent implements OnInit {
-  createAccountForm: FormGroup;
-  private user: User;
+  public createAccountForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
     public router: Router,
-    private urlProvider: UrlProviderService,
-    private http: HttpClient,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private userProviderService: UserProviderService,
@@ -93,13 +88,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   checkForm(): boolean {
-    const emailStatus: string = this.createAccountForm.controls.email.status;
-    const firstNameStatus: string = this.createAccountForm.controls.firstName.status;
-    const lastNameStatus: string = this.createAccountForm.controls.lastName.status;
-    const passwordStatus: string = this.createAccountForm.controls.password.status;
-    const birthDateStatus: string = this.createAccountForm.controls.birthDate.status;
-    if ((emailStatus === 'VALID') && (firstNameStatus === 'VALID') && (lastNameStatus === 'VALID')
-      && (passwordStatus === 'VALID') && (birthDateStatus === 'VALID')) {
+    if (this.createAccountForm.valid) {
       return true;
     } else {
       this.toastr.error('Invalid inputs', 'Warning', {
@@ -108,7 +97,5 @@ export class CreateAccountComponent implements OnInit {
       return false;
     }
   }
-
-
 
 }
