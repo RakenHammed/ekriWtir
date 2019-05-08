@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,17 @@ export class LoginComponent implements OnInit {
   data: Date = new Date();
   focus;
   focus1;
+  valid: any;
+  loginForm = this.formBuilder.group({
+    email: ['', [
+      Validators.required,
+      Validators.pattern(
+        // tslint:disable-next-line: max-line-length
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      ),
+    ]],
+    password: ['', Validators.required],
+  });
 
   constructor(
     public router: Router,
@@ -24,6 +36,8 @@ export class LoginComponent implements OnInit {
     private http: HttpClient,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
+    private formBuilder: FormBuilder,
+
   ) { }
 
 
@@ -54,7 +68,7 @@ export class LoginComponent implements OnInit {
       email: loginForm.value.email,
       password: loginForm.value.password,
     }
-    if (this.checkEmail(loginInfo.email) && loginInfo.password.length > 0) {
+    if (this.checkEmail() && this.checkPassword()) {
       return this.http.post<any>(`${this.urlProvider.serverUrl}/users/login/`, loginInfo)
         .subscribe(
           response => {
@@ -76,10 +90,28 @@ export class LoginComponent implements OnInit {
     this.spinner.hide('loginSpinner');
   }
 
-  checkEmail(email: string): boolean {
-    const regexEmail =
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regexEmail.test(email);
+  checkEmail(): boolean {
+    const emailStatus: string = this.loginForm.controls.email.status;
+    if (emailStatus === 'VALID') {
+      return true;
+    } else {
+      this.toastr.error('Unvalid Email', 'Warning', {
+        timeOut: 2000,
+      });
+      return false;
+    }
+  }
+
+  checkPassword(): boolean {
+    const passwordStatus: string = this.loginForm.controls.password.status;
+    if (passwordStatus === 'VALID') {
+      return true;
+    } else {
+      this.toastr.error('Unvalid Password', 'Warning', {
+        timeOut: 2000,
+      });
+      return false;
+    }
   }
 
   goToCreateAccount() {
