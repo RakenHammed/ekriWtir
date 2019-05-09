@@ -8,13 +8,15 @@
           <span class="button-bar"></span>
         </a>
         <div ngbDropdownMenu>
-          <a class="dropdown-header">Dropdown header</a>
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Separated link</a>
-          <a class="dropdown-item">Separated link</a>
+          <a class="dropdown-header">Menu</a>
+          <a class="dropdown-item" href="#">Contact Us</a>
+          <a class="dropdown-item" href="#">About Us</a>
+          <div *ngIf="!isloggedIn() && userIsInCreateAccountPage()||isloggedIn() && isAdministrator()"
+            class="dropdown-divider"></div>
+          <a *ngIf="!isloggedIn() && userIsInCreateAccountPage()" [routerLink]="['/login']"
+            class="dropdown-item">Login</a>
+          <a *ngIf="isloggedIn() && isAdministrator()" [routerLink]="['/admin/admin-space']" class="dropdown-item">Admin
+            Space</a>
           <div class="dropdown-divider" *ngIf="isloggedIn()"></div>
           <a *ngIf="isloggedIn()" [routerLink]="['/login']" class="dropdown-item" (click)="logOut()">Log Out</a>
         </div>

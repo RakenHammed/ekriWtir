@@ -1,0 +1,110 @@
+<div class="wrapper">
+  <div class="page-header page-header-small">
+    <div class="page-header-image rellax-header" data-rellax-speed="-8"
+      style="background-image: url('assets/img/bg6.jpg');">
+    </div>
+    <div class="container">
+      <div class="content-center">
+        <h1 class="title">This is our great company.</h1>
+      </div>
+    </div>
+  </div>
+  <div class="section section-about-us">
+    <div class="container">
+      <div class="row">
+        <div class="nav-tabs-navigation">
+          <div class="nav-tabs-wrapper">
+            <ngx-spinner name="loginSpinner"></ngx-spinner>
+            <ngb-tabset [justify]="'start'" class="text-center">
+              <ngb-tab>
+                <ng-template ngbTabTitle>
+                  <i class="now-ui-icons objects_umbrella-13"></i> Users
+                </ng-template>
+                <ng-template ngbTabContent>
+                  <p></p>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Is Renter</th>
+                        <th scope="col">Is Rentee</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let user of users">
+                        <td class="align-middle">{{user?.id  | number }} </td>
+                        <td class="align-middle">{{ user?.email }}</td>
+                        <td class="align-middle">{{ user?.firstName }}</td>
+                        <td class="align-middle">{{ user?.lastName}}</td>
+                        <td class="align-middle">{{ user?.isRenter }}</td>
+                        <td class="align-middle">{{ user?.isRentee }}</td>
+                        <td class="align-middle">{{ user?.phoneNumber }}</td>
+                        <td>
+                          <button type="button" class="btn btn-default btn-round"><i class="fas fa-user-plus"></i>
+                            Update
+                          </button>
+                        </td>
+                        <td>
+                          <button (click)="deleteUser(user.id)" type="button" class="btn btn-default btn-round"><i
+                              class="far fa-trash-alt"></i>
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="row flex-d justify-content-center">
+                    <ngb-pagination [collectionSize]="totalCount" [(page)]="page" aria-label="Default pagination"
+                      class="pagination-primary" (pageChange)="changePage($event)"></ngb-pagination>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab>
+                <ng-template ngbTabTitle>
+                  <i class="now-ui-icons shopping_cart-simple"></i> Cars
+                </ng-template>
+                <ng-template ngbTabContent>
+                  <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the
+                    answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to
+                    push possibilities, to show people, this is the level that things could be at. I think that’s a
+                    responsibility that I have, to push possibilities, to show people, this is the level that things
+                    could be at. </p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab>
+                <ng-template ngbTabTitle>
+                  <i class="now-ui-icons shopping_shop"></i> Leasing Demand
+                </ng-template>
+                <ng-template ngbTabContent>
+                  <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the
+                    level that things could be at. So when you get something that has the name Kanye West on it, it’s
+                    supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up
+                    being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab>
+                <ng-template ngbTabTitle>
+                  <i class="now-ui-icons ui-2_settings-90"></i> Renting Demand
+                </ng-template>
+                <ng-template ngbTabContent>
+                  <p>
+                    "I will be the leader of a company that ends up being worth billions of dollars, because I got the
+                    answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to
+                    push possibilities, to show people, this is the level that things could be at."
+                  </p>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
