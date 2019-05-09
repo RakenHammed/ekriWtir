@@ -1,3 +1,6 @@
+import { Airport } from './airport';
+import { Car } from './car';
+
 export class User {
   constructor(
     public id?: number,
@@ -15,5 +18,25 @@ export class User {
     public isAdministrator?: string,
     public createdAt?: string,
     public updatedAt?: string,
+  ) { }
+}
+
+export class Rentee {
+  constructor(
+    public id?: number,
+    public user?: User,
+    public airport?: Airport,
+    public car?: Car,
+  ) { }
+}
+
+export class Renter {
+  constructor(
+    public id?: number,
+    public user?: User,
+    public driverLicenseId?: number,
+    public driverLicenseDateOfIssue?: Date,
+    public airport?: Airport,
+    public car?: Car,
   ) { }
 }
