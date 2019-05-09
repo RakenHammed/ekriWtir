@@ -50,15 +50,8 @@ export class AppComponent implements OnInit {
         window.document.activeElement.scrollTop = 0;
       }
       this.navbar.sidebarClose();
-      const navigationForbidden = !(this.router.url.indexOf('login') > 0
-        || this.router.url.indexOf('create-account') > 0
-        || localStorage.token);
-      if (navigationForbidden) {
-        this.router.navigate(['/login']);
-        this.toastr.error('You Must Login First', 'Warning', {
-          timeOut: 1500
-        });
-      }
+      this.ifNotloggedIn();
+      this.onlyAdminCanAccess();
       this.renderer.listenGlobal('window', 'scroll', (event) => {
         const number = window.scrollY;
         var _location = this.location.path();
@@ -72,5 +65,28 @@ export class AppComponent implements OnInit {
         }
       });
     });
+  }
+
+  ifNotloggedIn() {
+    const navigationForbidden = !(this.router.url.indexOf('login') > 0
+      || this.router.url.indexOf('create-account') > 0
+      || localStorage.token);
+    if (navigationForbidden) {
+      this.router.navigate(['/login']);
+      this.toastr.error('You Must Login First', 'Warning', {
+        timeOut: 1500
+      });
+    }
+  }
+
+  onlyAdminCanAccess() {
+    const navigationForbidden = !JSON.parse(localStorage.getItem('user')).isAdministrator
+      && this.router.url.indexOf('admin') > 0
+    if (navigationForbidden) {
+      this.router.navigate(['/index']);
+      this.toastr.error('Only Administrator Can Access', 'Warning', {
+        timeOut: 1500
+      });
+    }
   }
 }

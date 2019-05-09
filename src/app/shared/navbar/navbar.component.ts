@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     public location: Location,
     private element: ElementRef,
+    private router: Router,
   ) {
     this.sidebarVisible = false;
   }
@@ -64,6 +66,20 @@ export class NavbarComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  isAdministrator(): boolean {
+    if (this.isloggedIn()) {
+      if (JSON.parse(localStorage.getItem('user')).isAdministrator) {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  userIsInCreateAccountPage() {
+    return this.router.url.indexOf('create-account') > 0;
   }
 
   logOut() {
