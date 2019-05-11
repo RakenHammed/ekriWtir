@@ -1,7 +1,6 @@
 import { Rentee } from '../models/user';
 import { UrlProviderService } from './url-provider.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Car } from '../models/car';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -21,7 +20,7 @@ export class LeasingProviderService {
     const options = {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
     }
-    return this.http.post<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/' , rentee,options);
+    return this.http.post<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/', rentee, options);
   }
 
   getleasingDemands(): Observable<Rentee[]> {
@@ -29,7 +28,7 @@ export class LeasingProviderService {
     const options = {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
     }
-    return this.http.get<Rentee[]>(this.urlProvider.serverUrl + '/leasingDemands/',options);
+    return this.http.get<Rentee[]>(this.urlProvider.serverUrl + '/leasingDemands/', options);
   }
 
   updateLeasingDemand(rentee: Rentee): Observable<Rentee> {
@@ -37,19 +36,23 @@ export class LeasingProviderService {
     const options = {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
     }
-    return this.http.put<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/' + rentee.id, rentee,options);
+    return this.http.put<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/' + rentee.id, rentee, options);
   }
 
-  deleteLeasingDemand(renterId: number) {
+  deleteLeasingDemand(renteeId: number) {
     const token: string = localStorage.getItem('token');
     const options = {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
     }
-    return this.http.delete<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/' + renterId,options);
+    return this.http.delete<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/' + renteeId, options);
   }
 
-
-
-
+  acceptLeasingDemand(rentee: Rentee) {
+    const token: string = localStorage.getItem('token');
+    const options = {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
+    }
+    return this.http.post<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/accept/', rentee, options);
+  }
 
 }

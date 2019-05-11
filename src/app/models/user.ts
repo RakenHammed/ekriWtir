@@ -24,8 +24,10 @@ export class User {
 export class Rentee {
   constructor(
     public id?: number,
+    public userId?: number,
     public user?: User,
     public airport?: Airport,
+    public carId?: number,
     public car?: Car,
   ) { }
 }
@@ -33,10 +35,12 @@ export class Rentee {
 export class Renter {
   constructor(
     public id?: number,
+    public userId?: number,
     public user?: User,
     public driverLicenseId?: number,
     public driverLicenseDateOfIssue?: Date,
     public airport?: Airport,
+    public carId?: number,
     public car?: Car,
   ) { }
 }
