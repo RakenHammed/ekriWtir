@@ -1,10 +1,10 @@
-import { User } from 'app/models/user';
+import { User } from './user';
 
 export class Car {
     constructor(
         public id?: number,
         public firstCirculationDate?: Date,
-        public constructor?: string,
+        public manufacturer?: string,
         public model?: string,
         public fromDate?: Date,
         public toDate?: Date,
