@@ -1,0 +1,217 @@
+<div class="wrapper">
+  <div class="page-header page-header-small">
+    <div class="page-header-image rellax-header" data-rellax-speed="-6" style="background-image:url(assets/img/login.jpg)">
+    </div>
+    <div class="container">
+      <div class="content-center">
+        <h1 class="title">This is our great company.</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-4">
+        <ngx-spinner name="loginSpinner"></ngx-spinner>
+        <form class="form" [formGroup]="saveCarForm" (ngSubmit)="onSubmit(saveCarForm)" novalidate>
+          <div class="header header-primary text-center">
+            <div class="logo-container">
+              <img src="assets/img/now-logo.png" alt="">
+            </div>
+          </div>
+          <div class="content">
+            <div class="input-group" [ngClass]="{
+                    'input-group-focus':focus===true,
+                    'has-success':saveCarForm?.controls.nationalId.status==='VALID',
+                    'has-danger':saveCarForm?.controls.nationalId.status==='INVALID'}">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-user"></i>
+                </span>
+              </div>
+              <input type="text" name="nationalId" class="form-control" placeholder="your nationalId..." (focus)="focus=true" formControlName="nationalId"
+                (blur)="focus=false" [ngClass]="{
+                        'form-control-success':saveCarForm?.controls.nationalId.status==='VALID',
+                      'form-control-danger':saveCarForm?.controls.nationalId.status==='INVALID'}">
+            </div>
+            <div class="input-group" [ngClass]="{
+                  'input-group-focus':focus===true,
+                  'has-success':saveCarForm?.controls.phoneNumber.status==='VALID',
+                  'has-danger':saveCarForm?.controls.phoneNumber.status==='INVALID'}">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-phone-volume"></i>
+                </span>
+              </div>
+              <input type="text" name="phoneNumber" class="form-control" placeholder="your phone Number..." (focus)="focus=true" formControlName="phoneNumber"
+                (blur)="focus=false" [ngClass]="{
+                      'form-control-success':saveCarForm?.controls.phoneNumber.status==='VALID',
+                    'form-control-danger':saveCarForm?.controls.phoneNumber.status==='INVALID'}">
+            </div>
+            <div class="input-group" [ngClass]="{
+                  'input-group-focus':focus===true,
+                  'has-success':saveCarForm?.controls.manufacturer.status==='VALID',
+                  'has-danger':saveCarForm?.controls.manufacturer.status==='INVALID'}">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-car"></i>
+                </span>
+              </div>
+              <input type="text" name="manufacturer" class="form-control" placeholder="Constructor of your car..." (focus)="focus=true"
+                formControlName="manufacturer" (blur)="focus=false" [ngClass]="{
+                    'form-control-success':saveCarForm?.controls.manufacturer.status==='VALID',
+                    'form-control-danger':saveCarForm?.controls.manufacturer.status==='INVALID'}">
+            </div>
+            <div class="input-group" [ngClass]="{
+                  'input-group-focus':focus===true,
+                  'has-success':saveCarForm?.controls.model.status==='VALID',
+                  'has-danger':saveCarForm?.controls.model.status==='INVALID'}">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-car"></i>
+                </span>
+              </div>
+              <input type="text" name="model" class="form-control" placeholder="Model of your car..." (focus)="focus=true" formControlName="model"
+                (blur)="focus=false" [ngClass]="{
+                      'form-control-success':saveCarForm?.controls.model.status==='VALID',
+                    'form-control-danger':saveCarForm?.controls.model.status==='INVALID'}">
+            </div>
+            <div class="input-group" [ngClass]="{
+              'input-group-focus':focus===true,
+              'has-success':saveCarForm?.controls.firstCirculationDate.status==='VALID',
+              'has-danger':saveCarForm?.controls.firstCirculationDate.status==='INVALID'}">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="far fa-calendar"></i>
+                </span>
+              </div>
+              <input bsDatepicker placement="right" [bsConfig]="{dateInputFormat: 'DD/MM/YYYY',containerClass:'theme-orange'}" name="firstCirculationDate"
+                class="form-control" placeholder="your car's firstCirculationDate..." (focus)="focus=true" (blur)="focus=false" formControlName="firstCirculationDate"
+                required [ngClass]="{
+                  'form-control-success':saveCarForm?.controls.firstCirculationDate.status==='VALID',
+                'form-control-danger':saveCarForm?.controls.firstCirculationDate.status==='INVALID'}">
+            </div>
+            <div class="input-group" [ngClass]="{
+                  'input-group-focus':focus===true,
+                  'has-success':saveCarForm?.controls.fuelType.status==='VALID',
+                  'has-danger':saveCarForm?.controls.fuelType.status==='INVALID'}">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-thermometer-quarter"></i>
+                </span>
+              </div>
+              <select name="fuelType" class="form-control" formControlName="fuelType" [ngClass]="{
+                    'form-control-success':saveCarForm?.controls.fuelType.status==='VALID',
+                    'form-control-danger':saveCarForm?.controls.fuelType.status==='INVALID'}">
+                <option value="" disabled>Type of fuel...</option>
+                <option value="gasoline">gasoline</option>
+                <option value="diesel">diesel</option>
+                <option value="gas">gas</option>
+              </select>
+            </div>
+            <div class="input-group" [ngClass]="{
+                'input-group-focus':focus===true,
+                'has-success':saveCarForm?.controls.airport.status==='VALID',
+                'has-danger':saveCarForm?.controls.airport.status==='INVALID'}">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-plane"></i>
+                </span>
+              </div>
+              <!-->
+              <input type="text" name="airport" class="form-control" placeholder="the airport..." (focus)="focus=true" formControlName="airport"
+                (blur)="focus=false" [ngClass]="{
+                    'form-control-success':saveCarForm?.controls.airport.status==='VALID',
+                  'form-control-danger':saveCarForm?.controls.airport.status==='INVALID'}">
+              <!-->
+              <select name="airport" class="form-control" formControlName="airport" [ngClass]="{
+                      'form-control-success':saveCarForm?.controls.airport.status==='VALID',
+                      'form-control-danger':saveCarForm?.controls.airport.status==='INVALID'}">
+                <option value="" disabled>the airport...</option>
+                <option *ngFor="let airport of airports.list" [ngValue]="airport">
+                  {{airport.name}}
+                </option>
+              </select>
+            </div>
+            <div class="input-group" [ngClass]="{
+                  'input-group-focus':focus===true,
+                  'has-success':saveCarForm?.controls.fromDate.status==='VALID',
+                  'has-danger':saveCarForm?.controls.fromDate.status==='INVALID',
+                  'has-success':saveCarForm?.controls.toDate.status==='VALID',
+                  'has-danger':saveCarForm?.controls.toDate.status==='INVALID'}">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="far fa-calendar"></i>
+                </span>
+              </div>
+              <input bsDatepicker placement="right" [bsConfig]="{dateInputFormat: 'DD/MM/YYYY',containerClass:'theme-orange'}" name="fromDate"
+                class="form-control" placeholder="from Date..." (focus)="focus=true" (blur)="focus=false" formControlName="fromDate"
+                required [ngClass]="{
+                    'form-control-success':saveCarForm?.controls.fromDate.status==='VALID',
+                    'form-control-danger':saveCarForm?.controls.fromDate.status==='INVALID'}">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="far fa-calendar"></i>
+                </span>
+              </div>
+              <input bsDatepicker placement="right" [bsConfig]="{dateInputFormat: 'DD/MM/YYYY',containerClass:'theme-orange'}" name="toDate"
+                class="form-control" placeholder="to Date..." (focus)="focus=true" (blur)="focus=false" formControlName="toDate"
+                required [ngClass]="{
+                              'form-control-success':saveCarForm?.controls.toDate.status==='VALID',
+                            'form-control-danger':saveCarForm?.controls.toDate.status==='INVALID'}">
+            </div>
+            <div class="input-group" [ngClass]="{
+                  'input-group-focus':focus===true,
+                  'has-success':saveCarForm?.controls.costPerDay.status==='VALID',
+                  'has-danger':saveCarForm?.controls.costPerDay.status==='INVALID'}">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-dollar-sign"></i>
+                </span>
+              </div>
+              <input type="text" name="costPerDay" placeholder="Your estimated cost per day..." class="form-control" (focus)="focus1=true"
+                (blur)="focus1=false" formControlName="costPerDay" [ngClass]="{
+                    'form-control-success':saveCarForm?.controls.costPerDay.status==='VALID',
+                    'form-control-danger':saveCarForm?.controls.costPerDay.status==='INVALID'}" />
+            </div>
+            <div class="footer text-center">
+              <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Lease your car</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <nav>
+        <ul>
+          <li>
+            <a href="https://www.creative-tim.com">
+              Creative Tim
+            </a>
+          </li>
+          <li>
+            <a href="https://www.creative-tim.com/about-us">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="http://blog.creative-tim.com">
+              Blog
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+              MIT License
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="copyright">
+        &copy; {{data | date: 'yyyy'}}, Designed by
+        <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
+        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+      </div>
+    </div>
+  </footer>
+</div>

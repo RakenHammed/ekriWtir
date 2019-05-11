@@ -1,10 +1,10 @@
-import { UserProviderService } from './../../providers/user-provider.service';
+import { UserProviderService } from '../../providers/user-provider.service';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { User } from 'app/models/user';
+import { User } from '../../models/user';
 
 
 @Component({
@@ -28,13 +28,13 @@ export class CreateAccountComponent implements OnInit {
     this.createAccountForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-    email: ['', [
-      Validators.required,
-      Validators.pattern(
-        // tslint:disable-next-line: max-line-length
-        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      ),
-    ]],
+      email: ['', [
+        Validators.required,
+        Validators.pattern(
+          // tslint:disable-next-line: max-line-length
+          /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        ),
+      ]],
       birthDate: ['', Validators.required],
       password: ['', Validators.required],
     });
@@ -63,19 +63,21 @@ export class CreateAccountComponent implements OnInit {
       bdColor: 'rgba(51,51,51,0.04)',
       color: 'orange'
     });
-    const user: User = {
-      firstName: CreateAccountForm.value.firstName,
-      lastName: CreateAccountForm.value.lastName,
-      email: CreateAccountForm.value.email,
-      password: CreateAccountForm.value.password,
-      birthDate: CreateAccountForm.value.birthDate,
-    }
+    const user = new User;
+      user.firstName = CreateAccountForm.value.firstName;
+      user.lastName = CreateAccountForm.value.lastName;
+      user.email = CreateAccountForm.value.email;
+      user.password = CreateAccountForm.value.password;
+      user.birthDate = CreateAccountForm.value.birthDate;
+    
     if (this.checkForm()) {
       return this.userProviderService.createUser(user)
         .subscribe(
           response => {
             this.spinner.hide('loginSpinner');
-
+            this.toastr.success('You Account is Created!', 'Success', {
+              timeOut: 2000 
+            });
           },
           error => {
             this.spinner.hide('loginSpinner');

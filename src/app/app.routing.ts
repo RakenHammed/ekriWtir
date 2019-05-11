@@ -10,6 +10,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 import { CreateAccountComponent } from './pages/create-account/create-account.component';
 import { AdminSpaceComponent } from './pages/admin/admin-space/admin-space.component';
+import { SaveCareComponent } from './pages/leasing-demand/leasing-demand.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'landing', component: LandingComponent },
     { path: 'login', component: LoginComponent },
     { path: 'create-account', component: CreateAccountComponent },
+    { path: 'save-care', component: SaveCareComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'admin/admin-space', component: AdminSpaceComponent }
 

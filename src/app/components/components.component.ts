@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, Renderer, OnDestroy } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -28,7 +29,7 @@ export class ComponentsComponent implements OnInit, OnDestroy {
 
     state_icon_primary = true;
 
-    constructor(private renderer: Renderer, config: NgbAccordionConfig) {
+    constructor(private renderer: Renderer, config: NgbAccordionConfig, public router: Router) {
         config.closeOthers = true;
         config.type = 'info';
     }
@@ -55,4 +56,8 @@ export class ComponentsComponent implements OnInit, OnDestroy {
         var body = document.getElementsByTagName('body')[0];
         body.classList.remove('index-page');
     }
+
+    goToLeasingForm(){
+        this.router.navigate(['/save-care']);
+      }
 }

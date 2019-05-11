@@ -14,6 +14,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { RouterModule } from '@angular/router';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AdminSpaceComponent } from './admin/admin-space/admin-space.component';
+import { SaveCareComponent } from './leasing-demand/leasing-demand.component';
 
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ import { AdminSpaceComponent } from './admin/admin-space/admin-space.component';
         LoginComponent,
         ProfileComponent,
         CreateAccountComponent,
-        AdminSpaceComponent
+        AdminSpaceComponent,
+        SaveCareComponent
     ]
 })
 export class PagesModule { }

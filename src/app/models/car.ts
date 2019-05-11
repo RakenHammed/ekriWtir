@@ -9,7 +9,7 @@ export class Car {
         public fromDate?: Date,
         public toDate?: Date,
         public fuelType?: string,
-        public costPerDay?: string,
+        public pricePerDay?: string,
         public renter?: User,
         public rentee?: User,
     ) { }
