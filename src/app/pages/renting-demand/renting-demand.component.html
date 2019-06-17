@@ -1,0 +1,343 @@
+<div class="wrapper">
+  <div class="page-header page-header-small">
+    <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/bg6.jpg');">
+    </div>
+    <div class="container">
+      <div class="content-center">
+        <h1 class="title">This is our great company.</h1>
+      </div>
+    </div>
+  </div>
+  <div class="section section-about-us">
+    <div class="container">
+      <div class="row">
+        <div class="nav-tabs-navigation">
+          <div class="nav-tabs-wrapper">
+            <ngx-spinner name="loginSpinner"></ngx-spinner>
+            <ngb-tabset [justify]="'start'" (tabChange)="beforeChange($event)" class="text-center">
+              <ngb-tab id="1">
+                <ng-template ngbTabTitle>
+                  <i class="fas fa-car"></i> Available cars
+                </ng-template>
+                <ng-template ngbTabContent>
+                  <p></p>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Manufacturer</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">First Circulation Date</th>
+                        <th scope="col">Fuel Type</th>
+                        <th scope="col">Price Per Day</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let rentee of rentees">
+                        <td class="align-middle">{{rentee?.car?.id | number }} </td>
+                        <td class="align-middle">{{ rentee?.car?.manufacturer }}</td>
+                        <td class="align-middle">{{ rentee?.car?.model }}</td>
+                        <td class="align-middle">{{ rentee?.car?.firstCirculationDate}}</td>
+                        <td class="align-middle">{{ rentee?.car?.fuelType }}</td>
+                        <td class="align-middle">{{ rentee?.car?.pricePerDay }}</td>
+                        <td>
+                          <button type="button" class="btn btn-default btn-round" (click)="openLg(leasingDemand,rentee)">
+                            <i class="fas fa-eye"></i>
+                            See Offer
+                          </button>
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-default btn-round" (click)="openRentingDemandModal(content,rentee)">
+                            <i class="fas fa-eye"></i>
+                            Send your request
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="row flex-d justify-content-center">
+                    <ngb-pagination [collectionSize]="totalCount" [(page)]="page" aria-label="Default pagination" class="pagination-primary"
+                      (pageChange)="changePage($event)"></ngb-pagination>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <nav>
+        <ul>
+          <li>
+            <a href="https://www.creative-tim.com">
+              Creative Tim
+            </a>
+          </li>
+          <li>
+            <a href="https://www.creative-tim.com/about-us">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="http://blog.creative-tim.com">
+              Blog
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+              MIT License
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="copyright">
+        &copy; {{data | date: 'yyyy'}}, Designed by
+        <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
+        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Leasing Demand Modal -->
+<ng-template #leasingDemand let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Offer number {{currentlyOpenLeasingDemand.id}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <h5 class="modal-title">Owner Info:</h5>
+      <hr />
+      <form>
+        <div class="row d-flex justify-content-center">
+          <div class="col-sm-3 col-lg-3">
+            <div class="form-group">
+              <label for="userId">User Id:</label>
+            </div>
+          </div>
+          <div class="col-sm-7 col-lg-7">
+            <div class="form-group">
+              <input type="text" id="userId" value="{{currentlyOpenLeasingDemand.user.id}}" class="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-3 col-lg-3">
+            <div class="form-group">
+              <label for="email">email:</label>
+            </div>
+          </div>
+          <div class="col-sm-7 col-lg-7">
+            <div class="form-group">
+              <input type="text" id="email" value="{{currentlyOpenLeasingDemand.user.email}}" class="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-3 col-lg-3">
+            <div class="form-group">
+              <label for="firstName">First Name:</label>
+            </div>
+          </div>
+          <div class="col-sm-7 col-lg-7">
+            <div class="form-group">
+              <input type="text" id="firstName" value="{{currentlyOpenLeasingDemand.user.firstName}}" class="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-3 col-lg-3">
+            <div class="form-group">
+              <label for="lastName">Last Name:</label>
+            </div>
+          </div>
+          <div class="col-sm-7 col-lg-7">
+            <div class="form-group">
+              <input type="text" id="lastName" value="{{currentlyOpenLeasingDemand.user.lastName}}" class="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-3 col-lg-3">
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number:</label>
+            </div>
+          </div>
+          <div class="col-sm-7 col-lg-7">
+            <div class="form-group">
+              <input type="text" id="phoneNumber" value="{{currentlyOpenLeasingDemand.user.phoneNumber}}" class="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-3 col-lg-3">
+            <div class="form-group">
+              <label for="birthDate">BirthDate:</label>
+            </div>
+          </div>
+          <div class="col-sm-7 col-lg-7">
+            <div class="form-group">
+              <input type="text" id="birthDate" value="{{currentlyOpenLeasingDemand.user.birthDate}}" class="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-3 col-lg-3">
+            <div class="form-group">
+              <label for="nationalId">National Id:</label>
+            </div>
+          </div>
+          <div class="col-sm-7 col-lg-7">
+            <div class="form-group">
+              <input type="text" id="nationalId" value="{{currentlyOpenLeasingDemand.user.nationalId}}" class="form-control" />
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-10">
+              <h5 class="modal-title">Car:</h5>
+              <hr />
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="firstCirculationDate">First Circulation Date:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="firstCirculationDate" value="{{currentlyOpenLeasingDemand.car.firstCirculationDate}}" class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="manufacturer">Manufacturer:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="manufacturer" value="{{currentlyOpenLeasingDemand.car.manufacturer}}" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="model">Model:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="model" value="{{currentlyOpenLeasingDemand.car.model}}" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="fuelType">Fuel Type:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="fuelType" value="{{currentlyOpenLeasingDemand.car.fuelType}}" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="pricePerDay">Price Per Day:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="pricePerDay" value="{{currentlyOpenLeasingDemand.car.pricePerDay}}" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-10">
+              <h5 class="modal-title">Availability:</h5>
+              <hr />
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="airport">Airport:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="airport" value="{{currentlyOpenLeasingDemand.airport}}" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="fromDate">From Date:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="fromDate" value="{{currentlyOpenLeasingDemand.car.fromDate}}" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="toDate">to Date:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="toDate" value="{{currentlyOpenLeasingDemand.car.toDate}}" class="form-control" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Renting Demand Modal -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">We need some more informations about you! </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <h5 class="modal-title">Info:</h5>
+      <hr />
+      <form [formGroup]="rentingDemandForm" (ngSubmit)="onSubmit(rentingDemandForm,currentlyOpenLeasingDemand)" novalidate>
+        <div class="row d-flex justify-content-center">
+          <div class="col-sm-3 col-lg-3">
+            <div class="form-group">
+              <label>driver License Id:</label>
+            </div>
+          </div>
+          <div class="col-sm-7 col-lg-7">
+            <div class="form-group" [ngClass]="{
+              'input-group-focus':focus===true,
+              'has-success':rentingDemandForm?.controls.driverLicenseId.status==='VALID',
+              'has-danger':rentingDemandForm?.controls.driverLicenseId.status==='INVALID'}">
+              <input type="text" name="driverLicenseId" class="form-control" formControlName="driverLicenseId" [ngClass]="{
+                'form-control-success':rentingDemandForm?.controls.driverLicenseId.status==='VALID',
+              'form-control-danger':rentingDemandForm?.controls.driverLicenseId.status==='INVALID'}" />
+            </div>
+          </div>
+          <div class="col-sm-3 col-lg-3">
+            <div class="form-group">
+              <label>driver License Date Of Issue:</label>
+            </div>
+          </div>
+          <div class="col-sm-7 col-lg-7">
+            <div class="form-group" [ngClass]="{
+              'input-group-focus':focus===true,
+              'has-success':rentingDemandForm?.controls.driverLicenseDateOfIssue.status==='VALID',
+              'has-danger':rentingDemandForm?.controls.driverLicenseDateOfIssue.status==='INVALID'}">
+              <input bsDatepicker placement="right" [bsConfig]="{dateInputFormat: 'DD/MM/YYYY',containerClass:'theme-orange'}" name="driverLicenseDateOfIssue"
+                class="form-control" formControlName="driverLicenseDateOfIssue" [ngClass]="{
+                'form-control-success':rentingDemandForm?.controls.driverLicenseDateOfIssue.status==='VALID',
+              'form-control-danger':rentingDemandForm?.controls.driverLicenseDateOfIssue.status==='INVALID'}" />
+            </div>
+          </div>
+          <div class="modal-footer text-center">
+            <div class="left-side">
+              <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Send your request</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>

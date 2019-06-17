@@ -11,6 +11,7 @@ import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.compo
 import { CreateAccountComponent } from './pages/create-account/create-account.component';
 import { AdminSpaceComponent } from './pages/admin/admin-space/admin-space.component';
 import { SaveCareComponent } from './pages/leasing-demand/leasing-demand.component';
+import { RentingDemandComponent } from './pages/renting-demand/renting-demand.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: 'create-account', component: CreateAccountComponent },
     { path: 'save-care', component: SaveCareComponent },
     { path: 'profile', component: ProfileComponent },
+    { path: 'renting-demand', component: RentingDemandComponent },
     { path: 'admin/admin-space', component: AdminSpaceComponent }
 
 ];

@@ -57,7 +57,11 @@ export class ComponentsComponent implements OnInit, OnDestroy {
         body.classList.remove('index-page');
     }
 
-    goToLeasingForm(){
+    goToLeasingForm() {
         this.router.navigate(['/save-care']);
-      }
+    }
+
+    goToAvailableCarList() {
+        this.router.navigate(['/renting-demand']);
+    }
 }
