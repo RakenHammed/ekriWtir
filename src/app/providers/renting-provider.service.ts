@@ -65,7 +65,7 @@ export class RentingProviderService {
     const options = {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
     }
-    return this.http.get<Car[]>(this.urlProvider.serverUrl + '/rentingDemands/', options);
+    return this.http.get<Car[]>(this.urlProvider.serverUrl + '/availableCars/', options);
   }
 
 }
