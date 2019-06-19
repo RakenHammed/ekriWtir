@@ -23,13 +23,15 @@ export class RentingDemandComponent implements OnInit {
   totalCount: number;
   rentees: Rentee[];
   currentlyOpenLeasingDemand: Rentee;
+  cars: Car[];
+  currentlyOpenCar: any;
 
   constructor(private formBuilder: FormBuilder,
     private leasingProvider: LeasingProviderService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private modalService: NgbModal,
-    private rentingProviderService: RentingProviderService
+    private rentingProvider: RentingProviderService
   ) {
     this.createForm();
   }
@@ -43,6 +45,7 @@ export class RentingDemandComponent implements OnInit {
         ),
       ]],
       driverLicenseDateOfIssue: ['', Validators.required],
+      privateKey: ['', Validators.required],
     });
   }
 
@@ -57,7 +60,7 @@ export class RentingDemandComponent implements OnInit {
       this.totalCount = rentees.length;
     });
     this.page = 1;
-    this.getLeasingDemands(this.page);
+    this.getAvailableCars(this.page);
   }
 
   ngOnDestroy() {
@@ -67,24 +70,33 @@ export class RentingDemandComponent implements OnInit {
     navbar.classList.remove('navbar-transparent');
   }
 
-  getLeasingDemands(currentPage: number) {
-    this.leasingProvider.getleasingDemands().subscribe(rentee => {
-      this.totalCount = rentee.length;
-      this.rentees = rentee.splice((currentPage - 1) * 10, 10)
+  // getRentingDemands(currentPage: number) {
+  //   this.rentingProvider.getRentingDemands().subscribe(rentee => {
+  //     this.totalCount = rentee.length;
+  //     this.rentees = rentee.splice((currentPage - 1) * 10, 10)
+  //   });
+  // }
+
+  getAvailableCars(currentPage: number) {
+    this.rentingProvider.getAvailableCars().subscribe(cars => {
+      this.totalCount = cars.length;
+      this.cars = cars.splice((currentPage - 1) * 10, 10)
     });
   }
 
-  openLg(content, leasingDemand: Rentee) {
-    this.currentlyOpenLeasingDemand = leasingDemand;
+
+  openLg(content, car: Car) {
+    this.currentlyOpenCar = car;
+    console.log(this.currentlyOpenCar)
     this.modalService.open(content, { size: 'lg' });
   }
 
-  openRentingDemandModal(content, leasingDemand: Rentee) {
-    this.currentlyOpenLeasingDemand = leasingDemand;
+  openRentingDemandModal(content, car: Car) {
+    this.currentlyOpenCar = car;
     this.modalService.open(content, { size: 'lg' });
   }
 
-  onSubmit(rentingDemandForm: NgForm, leasingDemand: Rentee) {
+  onSubmit(rentingDemandForm: NgForm, car: Car) {
     this.spinner.show('loginSpinner', {
       type: 'ball-spin-fade-rotating',
       size: 'medium',
@@ -97,16 +109,12 @@ export class RentingDemandComponent implements OnInit {
     const jwt = new JwtHelperService();
     const user = jwt.decodeToken(token);
     renter.userId = user.id;
-    renter.driverLicenseId = rentingDemandForm.value.driverLicenseId,
-      renter.driverLicenseDateOfIssue = rentingDemandForm.value.driverLicenseDateOfIssue,
-      renter.airport = new Airport,
-      renter.airport = leasingDemand.airport,
-      renter.user = user;
-    renter.car = new Car;
-    renter.carId = leasingDemand.car.id;
-    renter.car = leasingDemand.car;
+    renter.driverLicenseId = rentingDemandForm.value.driverLicenseId;
+    renter.driverLicenseDateOfIssue = rentingDemandForm.value.driverLicenseDateOfIssue;
+    car.renter = renter;
+    const privateKey = rentingDemandForm.value.privateKey;
     if (this.checkForm()) {
-      return this.rentingProviderService.createRentingDemand(renter)
+      this.rentingProvider.createRentingDemand(car, privateKey)
         .subscribe(
           response => {
             this.spinner.hide('loginSpinner');

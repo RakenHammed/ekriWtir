@@ -2,7 +2,6 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Airport } from './../../models/airport';
 import { User } from 'app/models/user';
 import { Rentee } from '../../models/user';
-import { Renter } from '../../models/user';
 import { LeasingProviderService } from '../../providers/leasing-provider';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';

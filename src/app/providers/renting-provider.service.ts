@@ -3,6 +3,7 @@ import { UrlProviderService } from './url-provider.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { Car } from './../models/car';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,16 @@ export class RentingProviderService {
   ) {
   }
 
-  createRentingDemand(renter: Renter): Observable<Renter> {
+  createRentingDemand(car: Car, privateKey: string): Observable<Renter> {
     const token: string = localStorage.getItem('token');
     const options = {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
     }
-    return this.http.post<Renter>(this.urlProvider.serverUrl + '/rentingDemands/', renter, options);
+    const params = {
+      car: car,
+      privateKey: privateKey,
+    }
+    return this.http.post<Renter>(this.urlProvider.serverUrl + '/rentingDemands/', params, options);
   }
 
   getRentingDemands(): Observable<Renter[]> {
@@ -53,6 +58,14 @@ export class RentingProviderService {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
     }
     return this.http.post<Renter>(this.urlProvider.serverUrl + '/leasingDemands/accept/', renter, options);
+  }
+
+  getAvailableCars(): Observable<Car[]> {
+    const token: string = localStorage.getItem('token');
+    const options = {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
+    }
+    return this.http.get<Car[]>(this.urlProvider.serverUrl + '/rentingDemands/', options);
   }
 
 }

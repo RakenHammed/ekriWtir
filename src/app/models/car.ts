@@ -11,6 +11,7 @@ export class Car {
         public fuelType?: string,
         public pricePerDay?: string,
         public renter?: User,
+        public renteeId?: number,
         public rentee?: User,
     ) { }
 }

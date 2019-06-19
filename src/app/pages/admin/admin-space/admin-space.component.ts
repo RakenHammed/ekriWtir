@@ -124,7 +124,7 @@ export class AdminSpaceComponent implements OnInit {
       response => {
         this.page = 1;
         this.getLeasingDemands(this.page);
-        this.toastr.success('Leasing Demand Deleted', 'Success', {
+        this.toastr.success('Leasing Demand Accepted', 'Success', {
           timeOut: 1000
         });
         this.modalService.dismissAll();

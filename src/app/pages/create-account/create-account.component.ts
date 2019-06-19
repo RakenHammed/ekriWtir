@@ -37,6 +37,7 @@ export class CreateAccountComponent implements OnInit {
       ]],
       birthDate: ['', Validators.required],
       password: ['', Validators.required],
+      accountAddress: ['', Validators.required],
     });
   }
 
@@ -69,7 +70,7 @@ export class CreateAccountComponent implements OnInit {
       user.email = CreateAccountForm.value.email;
       user.password = CreateAccountForm.value.password;
       user.birthDate = CreateAccountForm.value.birthDate;
-    
+      user.accountAddress = CreateAccountForm.value.accountAddress;
     if (this.checkForm()) {
       return this.userProviderService.createUser(user)
         .subscribe(

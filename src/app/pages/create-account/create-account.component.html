@@ -82,6 +82,20 @@
                   'form-control-success':createAccountForm?.controls.password.status==='VALID',
                 'form-control-danger':createAccountForm?.controls.password.status==='INVALID'}" />
             </div>
+            <div class="input-group form-group-no-border input-lg" [ngClass]="{
+              'input-group-focus':focus===true,
+              'has-success':createAccountForm?.controls.accountAddress.status==='VALID',
+              'has-danger':createAccountForm?.controls.accountAddress.status==='INVALID'}">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-key"></i>
+                </span>
+              </div>
+              <input type="accountAddress" name="accountAddress" placeholder="accountAddress..." class="form-control" (focus)="focus1=true" (blur)="focus1=false"
+                formControlName="accountAddress" [ngClass]="{
+                  'form-control-success':createAccountForm?.controls.accountAddress.status==='VALID',
+                'form-control-danger':createAccountForm?.controls.accountAddress.status==='INVALID'}" />
+            </div>
           </div>
           <div class="footer text-center">
             <button type="submit"  class="btn btn-primary btn-round btn-lg btn-block">Create Account</button>
