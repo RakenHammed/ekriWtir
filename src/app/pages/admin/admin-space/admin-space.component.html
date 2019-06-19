@@ -1,7 +1,6 @@
 <div class="wrapper">
   <div class="page-header page-header-small">
-    <div class="page-header-image rellax-header" data-rellax-speed="-8"
-      style="background-image: url('assets/img/bg6.jpg');">
+    <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/bg6.jpg');">
     </div>
     <div class="container">
       <div class="content-center">
@@ -38,7 +37,7 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let user of users">
-                        <td class="align-middle">{{user?.id  | number }} </td>
+                        <td class="align-middle">{{user?.id | number }} </td>
                         <td class="align-middle">{{ user?.email }}</td>
                         <td class="align-middle">{{ user?.firstName }}</td>
                         <td class="align-middle">{{ user?.lastName}}</td>
@@ -46,13 +45,14 @@
                         <td class="align-middle">{{ user?.isRentee }}</td>
                         <td class="align-middle">{{ user?.phoneNumber }}</td>
                         <td>
-                          <button type="button" class="btn btn-default btn-round"><i class="fas fa-user-plus"></i>
+                          <button type="button" class="btn btn-default btn-round">
+                            <i class="fas fa-user-plus"></i>
                             Update
                           </button>
                         </td>
                         <td>
-                          <button (click)="deleteUser(user.id)" type="button" class="btn btn-default btn-round"><i
-                              class="far fa-trash-alt"></i>
+                          <button (click)="deleteUser(user.id)" type="button" class="btn btn-default btn-round">
+                            <i class="far fa-trash-alt"></i>
                             Delete
                           </button>
                         </td>
@@ -60,8 +60,8 @@
                     </tbody>
                   </table>
                   <div class="row flex-d justify-content-center">
-                    <ngb-pagination [collectionSize]="totalCount" [(page)]="page" aria-label="Default pagination"
-                      class="pagination-primary" (pageChange)="changePage($event)"></ngb-pagination>
+                    <ngb-pagination [collectionSize]="totalCount" [(page)]="page" aria-label="Default pagination" class="pagination-primary"
+                      (pageChange)="changePage($event)"></ngb-pagination>
                   </div>
                 </ng-template>
               </ngb-tab>
@@ -70,11 +70,10 @@
                   <i class="now-ui-icons shopping_cart-simple"></i> Cars
                 </ng-template>
                 <ng-template ngbTabContent>
-                  <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the
-                    answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to
-                    push possibilities, to show people, this is the level that things could be at. I think that’s a
-                    responsibility that I have, to push possibilities, to show people, this is the level that things
-                    could be at. </p>
+                  <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers.
+                    I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities,
+                    to show people, this is the level that things could be at. I think that’s a responsibility that I have,
+                    to push possibilities, to show people, this is the level that things could be at. </p>
                 </ng-template>
               </ngb-tab>
               <ngb-tab id="3">
@@ -97,20 +96,20 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let rentee of rentees">
-                        <td class="align-middle">{{rentee?.id  | number }} </td>
+                        <td class="align-middle">{{rentee?.id | number }} </td>
                         <td class="align-middle">{{ rentee?.user?.email }}</td>
                         <td class="align-middle">{{ rentee?.user?.firstName }}</td>
                         <td class="align-middle">{{ rentee?.user?.lastName}}</td>
                         <td class="align-middle">{{ rentee?.user?.phoneNumber }}</td>
                         <td>
-                          <button type="button" class="btn btn-default btn-round"
-                            (click)="openLg(leasingDemand,rentee)"><i class="fas fa-eye"></i>
+                          <button type="button" class="btn btn-default btn-round" (click)="openLg(leasingDemand,rentee)">
+                            <i class="fas fa-eye"></i>
                             See Demand
                           </button>
                         </td>
                         <td>
-                          <button (click)="declineLeasingDemand(rentee.id)" type="button" class="btn btn-default btn-round"><i
-                              class="far fa-trash-alt"></i>
+                          <button (click)="declineLeasingDemand(rentee.id)" type="button" class="btn btn-default btn-round">
+                            <i class="far fa-trash-alt"></i>
                             Decline Demand
                           </button>
                         </td>
@@ -118,8 +117,8 @@
                     </tbody>
                   </table>
                   <div class="row flex-d justify-content-center">
-                    <ngb-pagination [collectionSize]="totalCount" [(page)]="page" aria-label="Default pagination"
-                      class="pagination-primary" (pageChange)="changePage($event)"></ngb-pagination>
+                    <ngb-pagination [collectionSize]="totalCount" [(page)]="page" aria-label="Default pagination" class="pagination-primary"
+                      (pageChange)="changePage($event)"></ngb-pagination>
                   </div>
                 </ng-template>
               </ngb-tab>
@@ -128,11 +127,44 @@
                   <i class="now-ui-icons ui-2_settings-90"></i> Renting Demand
                 </ng-template>
                 <ng-template ngbTabContent>
-                  <p>
-                    "I will be the leader of a company that ends up being worth billions of dollars, because I got the
-                    answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to
-                    push possibilities, to show people, this is the level that things could be at."
-                  </p>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let renter of renters">
+                        <td class="align-middle">{{renter?.id | number }} </td>
+                        <td class="align-middle">{{ renter?.user?.email }}</td>
+                        <td class="align-middle">{{ renter?.user?.firstName }}</td>
+                        <td class="align-middle">{{ renter?.user?.lastName}}</td>
+                        <td class="align-middle">{{ renter?.user?.phoneNumber }}</td>
+                        <td>
+                          <button type="button" class="btn btn-default btn-round" (click)="openRg(rentingDemand,renter)">
+                            <i class="fas fa-eye"></i>
+                            See Demand
+                          </button>
+                        </td>
+                        <td>
+                          <button (click)="declineRentingDemand(renter.id)" type="button" class="btn btn-default btn-round">
+                            <i class="far fa-trash-alt"></i>
+                            Decline Demand
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="row flex-d justify-content-center">
+                    <ngb-pagination [collectionSize]="totalCount" [(page)]="page" aria-label="Default pagination" class="pagination-primary"
+                      (pageChange)="changePage($event)"></ngb-pagination>
+                  </div>
                 </ng-template>
               </ngb-tab>
             </ngb-tabset>
@@ -184,8 +216,7 @@
           </div>
           <div class="col-sm-7 col-lg-7">
             <div class="form-group">
-              <input type="text" id="firstName" value="{{currentlyOpenLeasingDemand.user.firstName}}"
-                class="form-control" />
+              <input type="text" id="firstName" value="{{currentlyOpenLeasingDemand.user.firstName}}" class="form-control" />
             </div>
           </div>
           <div class="col-sm-3 col-lg-3">
@@ -195,8 +226,7 @@
           </div>
           <div class="col-sm-7 col-lg-7">
             <div class="form-group">
-              <input type="text" id="lastName" value="{{currentlyOpenLeasingDemand.user.lastName}}"
-                class="form-control" />
+              <input type="text" id="lastName" value="{{currentlyOpenLeasingDemand.user.lastName}}" class="form-control" />
             </div>
           </div>
           <div class="col-sm-3 col-lg-3">
@@ -206,8 +236,7 @@
           </div>
           <div class="col-sm-7 col-lg-7">
             <div class="form-group">
-              <input type="text" id="phoneNumber" value="{{currentlyOpenLeasingDemand.user.phoneNumber}}"
-                class="form-control" />
+              <input type="text" id="phoneNumber" value="{{currentlyOpenLeasingDemand.user.phoneNumber}}" class="form-control" />
             </div>
           </div>
           <div class="col-sm-3 col-lg-3">
@@ -217,8 +246,7 @@
           </div>
           <div class="col-sm-7 col-lg-7">
             <div class="form-group">
-              <input type="text" id="birthDate" value="{{currentlyOpenLeasingDemand.user.birthDate}}"
-                class="form-control" />
+              <input type="text" id="birthDate" value="{{currentlyOpenLeasingDemand.user.birthDate}}" class="form-control" />
             </div>
           </div>
           <div class="col-sm-3 col-lg-3">
@@ -228,8 +256,7 @@
           </div>
           <div class="col-sm-7 col-lg-7">
             <div class="form-group">
-              <input type="text" id="nationalId" value="{{currentlyOpenLeasingDemand.user.nationalId}}"
-                class="form-control" />
+              <input type="text" id="nationalId" value="{{currentlyOpenLeasingDemand.user.nationalId}}" class="form-control" />
             </div>
           </div>
           <div class="row d-flex justify-content-center">
@@ -244,8 +271,8 @@
             </div>
             <div class="col-sm-7 col-lg-7">
               <div class="form-group">
-                <input type="text" id="firstCirculationDate"
-                  value="{{currentlyOpenLeasingDemand.car.firstCirculationDate}}" class="form-control" />
+                <input type="text" id="firstCirculationDate" value="{{currentlyOpenLeasingDemand.car.firstCirculationDate}}" class="form-control"
+                />
               </div>
             </div>
             <div class="col-sm-3 col-lg-3">
@@ -255,8 +282,7 @@
             </div>
             <div class="col-sm-7 col-lg-7">
               <div class="form-group">
-                <input type="text" id="manufacturer" value="{{currentlyOpenLeasingDemand.car.manufacturer}}"
-                  class="form-control" />
+                <input type="text" id="manufacturer" value="{{currentlyOpenLeasingDemand.car.manufacturer}}" class="form-control" />
               </div>
             </div>
             <div class="col-sm-3 col-lg-3">
@@ -276,8 +302,7 @@
             </div>
             <div class="col-sm-7 col-lg-7">
               <div class="form-group">
-                <input type="text" id="fuelType" value="{{currentlyOpenLeasingDemand.car.fuelType}}"
-                  class="form-control" />
+                <input type="text" id="fuelType" value="{{currentlyOpenLeasingDemand.car.fuelType}}" class="form-control" />
               </div>
             </div>
             <div class="col-sm-3 col-lg-3">
@@ -287,8 +312,7 @@
             </div>
             <div class="col-sm-7 col-lg-7">
               <div class="form-group">
-                <input type="text" id="pricePerDay" value="{{currentlyOpenLeasingDemand.car.pricePerDay}}"
-                  class="form-control" />
+                <input type="text" id="pricePerDay" value="{{currentlyOpenLeasingDemand.car.pricePerDay}}" class="form-control" />
               </div>
             </div>
           </div>
@@ -314,8 +338,7 @@
             </div>
             <div class="col-sm-7 col-lg-7">
               <div class="form-group">
-                <input type="text" id="fromDate" value="{{currentlyOpenLeasingDemand.car.fromDate}}"
-                  class="form-control" />
+                <input type="text" id="fromDate" value="{{currentlyOpenLeasingDemand.car.fromDate}}" class="form-control" />
               </div>
             </div>
             <div class="col-sm-3 col-lg-3">
@@ -343,3 +366,195 @@
     </div>
   </div>
 </ng-template>
+
+<!-- Renting Demand Modal -->
+<ng-template #rentingDemand let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Renting Demand number {{currentlyOpenRentingDemand.id}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <h5 class="modal-title">User Info:</h5>
+        <hr />
+        <form>
+          <div class="row d-flex justify-content-center">
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="userId">User Id:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="userId" value="{{currentlyOpenRentingDemand?.user?.id}}" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="email">email:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="email" value="{{currentlyOpenRentingDemand?.user?.email}}" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="firstName">First Name:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="firstName" value="{{currentlyOpenRentingDemand?.user?.firstName}}" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="lastName">Last Name:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="lastName" value="{{currentlyOpenRentingDemand?.user?.lastName}}" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="phoneNumber">Phone Number:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="phoneNumber" value="{{currentlyOpenRentingDemand?.user?.phoneNumber}}" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="birthDate">BirthDate:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="birthDate" value="{{currentlyOpenRentingDemand?.user?.birthDate}}" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <div class="form-group">
+                <label for="nationalId">National Id:</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-7">
+              <div class="form-group">
+                <input type="text" id="nationalId" value="{{currentlyOpenRentingDemand?.user?.nationalId}}" class="form-control" />
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-10">
+                <h5 class="modal-title">Car:</h5>
+                <hr />
+              </div>
+              <div class="col-sm-3 col-lg-3">
+                <div class="form-group">
+                  <label for="firstCirculationDate">First Circulation Date:</label>
+                </div>
+              </div>
+              <div class="col-sm-7 col-lg-7">
+                <div class="form-group">
+                  <input type="text" id="firstCirculationDate" value="{{currentlyOpenRentingDemand?.car?.firstCirculationDate}}" class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-3 col-lg-3">
+                <div class="form-group">
+                  <label for="manufacturer">Manufacturer:</label>
+                </div>
+              </div>
+              <div class="col-sm-7 col-lg-7">
+                <div class="form-group">
+                  <input type="text" id="manufacturer" value="{{currentlyOpenRentingDemand?.car?.manufacturer}}" class="form-control" />
+                </div>
+              </div>
+              <div class="col-sm-3 col-lg-3">
+                <div class="form-group">
+                  <label for="model">Model:</label>
+                </div>
+              </div>
+              <div class="col-sm-7 col-lg-7">
+                <div class="form-group">
+                  <input type="text" id="model" value="{{currentlyOpenRentingDemand?.car?.model}}" class="form-control" />
+                </div>
+              </div>
+              <div class="col-sm-3 col-lg-3">
+                <div class="form-group">
+                  <label for="fuelType">Fuel Type:</label>
+                </div>
+              </div>
+              <div class="col-sm-7 col-lg-7">
+                <div class="form-group">
+                  <input type="text" id="fuelType" value="{{currentlyOpenRentingDemand?.car?.fuelType}}" class="form-control" />
+                </div>
+              </div>
+              <div class="col-sm-3 col-lg-3">
+                <div class="form-group">
+                  <label for="pricePerDay">Price Per Day:</label>
+                </div>
+              </div>
+              <div class="col-sm-7 col-lg-7">
+                <div class="form-group">
+                  <input type="text" id="pricePerDay" value="{{currentlyOpenRentingDemand?.car?.pricePerDay}}" class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-10">
+                <h5 class="modal-title">Availability:</h5>
+                <hr />
+              </div>
+              <div class="col-sm-3 col-lg-3">
+                <div class="form-group">
+                  <label for="airport">Airport:</label>
+                </div>
+              </div>
+              <div class="col-sm-7 col-lg-7">
+                <div class="form-group">
+                  <input type="text" id="airport" value="{{currentlyOpenRentingDemand?.airport}}" class="form-control" />
+                </div>
+              </div>
+              <div class="col-sm-3 col-lg-3">
+                <div class="form-group">
+                  <label for="fromDate">From Date:</label>
+                </div>
+              </div>
+              <div class="col-sm-7 col-lg-7">
+                <div class="form-group">
+                  <input type="text" id="fromDate" value="{{currentlyOpenRentingDemand?.car?.fromDate}}" class="form-control" />
+                </div>
+              </div>
+              <div class="col-sm-3 col-lg-3">
+                <div class="form-group">
+                  <label for="toDate">to Date:</label>
+                </div>
+              </div>
+              <div class="col-sm-7 col-lg-7">
+                <div class="form-group">
+                  <input type="text" id="toDate" value="{{currentlyOpenRentingDemand?.car?.toDate}}" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="left-side">
+        <button type="button" class="btn btn-default" (click)="acceptRentingDemand(currentlyOpenRentingDemand)">Accept</button>
+      </div>
+      <div class="divider"></div>
+      <div class="right-side">
+        <button type="button" class="btn btn-danger" (click)="declineRentingDemand(currentlyOpenRentingDemand.id)">Decline</button>
+      </div>
+    </div>
+  </ng-template>

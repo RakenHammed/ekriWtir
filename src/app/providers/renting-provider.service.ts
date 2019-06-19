@@ -57,7 +57,7 @@ export class RentingProviderService {
     const options = {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
     }
-    return this.http.post<Renter>(this.urlProvider.serverUrl + '/leasingDemands/accept/', renter, options);
+    return this.http.post<Renter>(this.urlProvider.serverUrl + '/rentingDemands/accept/', renter, options);
   }
 
   getAvailableCars(): Observable<Car[]> {

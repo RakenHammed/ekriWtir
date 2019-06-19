@@ -1,6 +1,7 @@
+import { RentingProviderService } from './../../../providers/renting-provider.service';
 import { Component, OnInit } from '@angular/core';
 import * as Rellax from 'rellax';
-import { User, Rentee } from 'app/models/user';
+import { User, Rentee, Renter } from 'app/models/user';
 import { UserProviderService } from 'app/providers/user-provider.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -21,10 +22,13 @@ export class AdminSpaceComponent implements OnInit {
   totalCount: number;
   rentees: Rentee[];
   currentlyOpenLeasingDemand: Rentee;
+  currentlyOpenRentingDemand: Renter;
+  renters: Renter[];
 
   constructor(
     private userProvider: UserProviderService,
     private leasingProvider: LeasingProviderService,
+    private rentingProvider: RentingProviderService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private modalService: NgbModal,
@@ -82,7 +86,7 @@ export class AdminSpaceComponent implements OnInit {
         this.toastr.error(error.error.message, 'Warning', {
           timeOut: 2000,
         });
-      } ,
+      },
     );
   }
 
@@ -99,7 +103,8 @@ export class AdminSpaceComponent implements OnInit {
         this.getLeasingDemands(this.page);
         break;
       case '4':
-
+      this.page = 1;
+      this.getRentingDemands(this.page);
         break;
 
       default:
@@ -159,5 +164,62 @@ export class AdminSpaceComponent implements OnInit {
     );
     this.modalService.dismissAll();
   }
+
+  getRentingDemands(currentPage: number) {
+    this.rentingProvider.getRentingDemands().subscribe(renter => {
+      this.totalCount = renter.length;
+      this.renters = renter.splice((currentPage - 1) * 10, 10)
+    });
+  }
+
+  openRg(content, rentingDemand: Renter) {
+    console.log(rentingDemand)
+    this.currentlyOpenRentingDemand = rentingDemand;
+    this.modalService.open(content, { size: 'lg' });
+  }
+
+  acceptRentingDemand(rentingDemand: Renter) {
+    this.rentingProvider.acceptRentingDemand(rentingDemand).subscribe(
+      response => {
+        this.page = 1;
+        this.getRentingDemands(this.page);
+        this.toastr.success('Renting Demand Accepted', 'Success', {
+          timeOut: 1000
+        });
+        this.modalService.dismissAll();
+        this.spinner.hide('loginSpinner');
+      },
+      error => {
+        this.spinner.hide('loginSpinner');
+        this.toastr.error(error.error.message, 'Warning', {
+          timeOut: 2000,
+        });
+      }
+    );
+  }
+
+  declineRentingDemand(id: number) {
+    this.rentingProvider.deleteRentingDemand(id).subscribe(
+      response => {
+        this.page = 1;
+        this.getRentingDemands(this.page);
+        this.toastr.success('Renting Demand Deleted', 'Success', {
+          timeOut: 1000
+        });
+        this.modalService.dismissAll();
+        this.spinner.hide('loginSpinner');
+      },
+      error => {
+        this.spinner.hide('loginSpinner');
+        this.toastr.error(error.error.message, 'Warning', {
+          timeOut: 2000,
+        });
+      }
+    );
+    this.modalService.dismissAll();
+  }
+
+
+
 }
 
