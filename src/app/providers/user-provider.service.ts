@@ -15,11 +15,7 @@ export class UserProviderService {
   ) {
   }
   getUsers(): Observable<User[]> {
-    const token: string = localStorage.getItem('token');
-    const options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
-    }
-    return this.http.get<User[]>(this.urlProvider.serverUrl + '/users/', options);
+    return this.http.get<User[]>(this.urlProvider.serverUrl + '/users/');
   }
 
   createUser(user: User): Observable<User> {
@@ -31,11 +27,7 @@ export class UserProviderService {
   }
 
   deleteUser(userId: number) {
-    const token: string = localStorage.getItem('token');
-    const options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
-    }
-    return this.http.delete<User>(this.urlProvider.serverUrl + '/users/' + userId, options);
+    return this.http.delete<User>(this.urlProvider.serverUrl + '/users/' + userId);
   }
 
 }

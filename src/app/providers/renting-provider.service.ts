@@ -17,55 +17,31 @@ export class RentingProviderService {
   }
 
   createRentingDemand(car: Car, privateKey: string): Observable<Renter> {
-    const token: string = localStorage.getItem('token');
-    const options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
-    }
     const params = {
       car: car,
       privateKey: privateKey,
     }
-    return this.http.post<Renter>(this.urlProvider.serverUrl + '/rentingDemands/', params, options);
+    return this.http.post<Renter>(this.urlProvider.serverUrl + '/rentingDemands/', params);
   }
 
   getRentingDemands(): Observable<Renter[]> {
-    const token: string = localStorage.getItem('token');
-    const options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
-    }
-    return this.http.get<Renter[]>(this.urlProvider.serverUrl + '/rentingDemands/', options);
+    return this.http.get<Renter[]>(this.urlProvider.serverUrl + '/rentingDemands/');
   }
 
   updateRentingDemand(renter: Renter): Observable<Renter> {
-    const token: string = localStorage.getItem('token');
-    const options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
-    }
-    return this.http.put<Renter>(this.urlProvider.serverUrl + '/rentingDemands/' + renter.id, renter, options);
+    return this.http.put<Renter>(this.urlProvider.serverUrl + '/rentingDemands/' + renter.id, renter);
   }
 
   deleteRentingDemand(renterId: number) {
-    const token: string = localStorage.getItem('token');
-    const options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
-    }
-    return this.http.delete<Renter>(this.urlProvider.serverUrl + '/rentingDemands/' + renterId, options);
+    return this.http.delete<Renter>(this.urlProvider.serverUrl + '/rentingDemands/' + renterId);
   }
 
   acceptRentingDemand(renter: Renter) {
-    const token: string = localStorage.getItem('token');
-    const options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
-    }
-    return this.http.post<Renter>(this.urlProvider.serverUrl + '/rentingDemands/accept/', renter, options);
+    return this.http.post<Renter>(this.urlProvider.serverUrl + '/rentingDemands/accept/', renter);
   }
 
   getAvailableCars(): Observable<Car[]> {
-    const token: string = localStorage.getItem('token');
-    const options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
-    }
-    return this.http.get<Car[]>(this.urlProvider.serverUrl + '/availableCars/', options);
+    return this.http.get<Car[]>(this.urlProvider.serverUrl + '/rentingDemands/availableCars/');
   }
 
 }

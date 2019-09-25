@@ -14,11 +14,11 @@ import { Car } from '../../models/car';
 
 
 @Component({
-  selector: 'app-save-care',
+  selector: 'app-leasing-demand',
   templateUrl: './leasing-demand.component.html',
   styleUrls: ['./leasing-demand.component.scss']
 })
-export class SaveCareComponent implements OnInit {
+export class LeasingDemandComponent implements OnInit {
   public saveCarForm: FormGroup;
   public airports = new Airports;
 

@@ -7,6 +7,8 @@ import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ConnectionService } from 'ng-connection-service';
 import { ToastrService } from 'ngx-toastr';
+import { HttpParams, HttpClient } from '@angular/common/http';
+import { UrlProviderService } from './providers/url-provider.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +21,8 @@ export class AppComponent implements OnInit {
   isConnected: boolean;
 
   constructor(
+    private urlProvider: UrlProviderService,
+    private http: HttpClient,
     private renderer: Renderer,
     private router: Router,
     @Inject(DOCUMENT)
@@ -41,8 +45,8 @@ export class AppComponent implements OnInit {
       }
     })
   }
-  ngOnInit() {
-    var navbar: HTMLElement = this.element.nativeElement.children[0].children[0];
+  async ngOnInit() {
+    let navbar: HTMLElement = this.element.nativeElement.children[0].children[0];
     this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
       if (window.outerWidth > 991) {
         window.document.children[0].scrollTop = 0;
@@ -50,11 +54,11 @@ export class AppComponent implements OnInit {
         window.document.activeElement.scrollTop = 0;
       }
       this.navbar.sidebarClose();
-      this.ifNotloggedIn();
-      this.onlyAdminCanAccess();
+      // this.ifNotloggedIn();
+      // this.onlyAdminCanAccess();
       this.renderer.listenGlobal('window', 'scroll', (event) => {
         const number = window.scrollY;
-        var _location = this.location.path();
+        let _location = this.location.path();
         _location = _location.split('/')[2];
 
         if (number > 150 || window.pageYOffset > 150) {

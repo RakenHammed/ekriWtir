@@ -58,7 +58,7 @@ export class ComponentsComponent implements OnInit, OnDestroy {
     }
 
     goToLeasingForm() {
-        this.router.navigate(['/save-care']);
+        this.router.navigate(['/leasing-demand']);
     }
 
     goToAvailableCarList() {

@@ -16,43 +16,23 @@ export class LeasingProviderService {
   }
 
   createLeasingDemand(rentee: Rentee): Observable<Rentee> {
-    const token: string = localStorage.getItem('token');
-    const options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
-    }
-    return this.http.post<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/', rentee, options);
+    return this.http.post<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/', rentee);
   }
 
   getleasingDemands(): Observable<Rentee[]> {
-    const token: string = localStorage.getItem('token');
-    const options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
-    }
-    return this.http.get<Rentee[]>(this.urlProvider.serverUrl + '/leasingDemands/', options);
+    return this.http.get<Rentee[]>(this.urlProvider.serverUrl + '/leasingDemands/');
   }
 
   updateLeasingDemand(rentee: Rentee): Observable<Rentee> {
-    const token: string = localStorage.getItem('token');
-    const options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
-    }
-    return this.http.put<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/' + rentee.id, rentee, options);
+    return this.http.put<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/' + rentee.id, rentee);
   }
 
   deleteLeasingDemand(renteeId: number) {
-    const token: string = localStorage.getItem('token');
-    const options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
-    }
-    return this.http.delete<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/' + renteeId, options);
+    return this.http.delete<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/' + renteeId);
   }
 
   acceptLeasingDemand(rentee: Rentee) {
-    const token: string = localStorage.getItem('token');
-    const options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
-    }
-    return this.http.post<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/accept/', rentee, options);
+    return this.http.post<Rentee>(this.urlProvider.serverUrl + '/leasingDemands/accept/', rentee);
   }
 
 }

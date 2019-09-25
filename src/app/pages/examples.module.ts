@@ -14,7 +14,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { RouterModule } from '@angular/router';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AdminSpaceComponent } from './admin/admin-space/admin-space.component';
-import { SaveCareComponent } from './leasing-demand/leasing-demand.component';
+import { LeasingDemandComponent } from './leasing-demand/leasing-demand.component';
 import { RentingDemandComponent } from './renting-demand/renting-demand.component';
 
 @NgModule({
@@ -38,7 +38,7 @@ import { RentingDemandComponent } from './renting-demand/renting-demand.componen
         ProfileComponent,
         CreateAccountComponent,
         AdminSpaceComponent,
-        SaveCareComponent,
+        LeasingDemandComponent,
         RentingDemandComponent
     ]
 })
